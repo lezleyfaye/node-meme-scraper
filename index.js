@@ -1,6 +1,7 @@
 // https://memegen-link-examples-upleveled.netlify.app/
 import axios from 'axios';
 import cheerio from 'cheerio';
+import fs from 'fs';
 
 // axios.get('/user/12345')
 //    .then(function (response) {
@@ -11,8 +12,24 @@ import cheerio from 'cheerio';
 //  console.log(response.config);
 // });
 
+// downloads html from website
+
 axios
   .get('https://memegen-link-examples-upleveled.netlify.app/')
   .then((response) => {
-    console.log(response.data);
+    const $ = cheerio.load(response.data);
+    $('img').each((index, element) => {
+      console.log($(element));
+    });
+  })
+  .catch((error) => {
+    console.log(error);
   });
+//
+
+// $('a[href]').each((index, element) => {
+//   console.log($(element).find('a[href]').text().trim());
+// });
+// .catch((error) => {
+//       console.log(error);
+//   });
