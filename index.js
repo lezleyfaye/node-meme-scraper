@@ -3,14 +3,14 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 import fs from 'fs';
 
-// axios is getting the website and cheerio is loading it
+// axios + cheerio getting and loading site
 axios
   .get('https://memegen-link-examples-upleveled.netlify.app/')
   .then((response) => {
     const $ = cheerio.load(response.data);
     const memes = [];
 
-    // returns lots of info for each img element
+    //
     $('#images').each((index, element) => {
       memes.push({
         url: $(element).find('a').attr('href'),
@@ -34,3 +34,16 @@ axios
 // $('img').each(function (index) {
 //   console.log(index + 'src:' + ' ' + $(this).text());
 // });
+
+// axios
+//   .get('https://memegen-link-examples-upleveled.netlify.app/')
+//   .then((response) => {
+//     let $ = cheerio.load(response.data);
+
+//     $('img').each((index, element) => {
+//       console.log($(element));
+//     });
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
